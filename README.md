@@ -4,7 +4,7 @@ Empirical researchers sometimes employ instrumental variables to solve endogenei
 ## Reference ##
  - D. Adams. The Hitchhiker’s Guide to the Galaxy. San Val, 1995.
  - John Bound, David A Jaeger, and Regina M Baker. Problems with instrumental variables estimation when the correlation between the instruments and the endogenous explanatory  variable is weak. Journal of the American statistical association, 90(430):443–450, 1995.
- -Maurice H Quenouille. Notes on bias in estimation. Biometrika, 43(3/4):353–360, 1956.
- -WR Schucany, HL Gray, and DB Owen. On bias reduction in estimation. Journal of the American Statistical Association, 66(335):524–533, 1971.
- -James H Stock and Motohiro Yogo. Testing for weak instruments in linear iv regression. Technical report, National Bureau of Economic Research, 2002
- -Sun Yutao. An application of the jackknife to weak instruments. 2012.
+ - Maurice H Quenouille. Notes on bias in estimation. Biometrika, 43(3/4):353–360, 1956.
+ - WR Schucany, HL Gray, and DB Owen. On bias reduction in estimation. Journal of the American Statistical Association, 66(335):524–533, 1971.
+ - James H Stock and Motohiro Yogo. Testing for weak instruments in linear iv regression. Technical report, National Bureau of Economic Research, 2002
+ - Sun Yutao. An application of the jackknife to weak instruments. 2012.
