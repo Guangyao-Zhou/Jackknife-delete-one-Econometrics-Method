@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % This file is to replicate paper "The Jackknife-a review"
-% Author: Guangyao Zhou
+% Author: Guangyao Zhou & Yutao Sun
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Replication results are stored in some Excel files. 
 function result = Jackknife_delete_one
