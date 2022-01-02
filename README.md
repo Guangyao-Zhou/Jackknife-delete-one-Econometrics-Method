@@ -1,4 +1,4 @@
-# Jackknife-delete-one Methods Using in 2SLS Regression with Weak Instruments
+# Jackknife-delete-one Methods
 ## Introduction
 Empirical researchers sometimes employ instrumental variables to solve endogeneity problems where regressors are correlated with the regression error terms. This correlation arises from an unobserved force that influences regressors as well as the response. However, instruments cannot solve all the problems: when instruments are weakly correlated with the endogenous variable, the 2SLS estimator is biased towards the OLS estimator. Simulation experiments prove that: Jackknife-delete-one method can effectively reduce the deviation caused by weak instrumental variables. This file provides a code for the theory replication.
 ## Reference ##
