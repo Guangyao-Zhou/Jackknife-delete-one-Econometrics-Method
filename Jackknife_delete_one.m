@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % This file is to replicate paper "The Jackknife-a review"
-% Author: Guangyao Zhou & Yutao Sun
+% Author: Guangyao Zhou
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Replication results are stored in some Excel files. 
 function result = Jackknife_delete_one
@@ -19,31 +19,31 @@ function repl = repetition(j)
 % In our study, T is the simulation times; "table" consists of 2SLS
 % estimator, Jackknife-delete-one estimator, and Coverage of boostrapping
 % interval;
-T = 1000;
-table = cell(T,3);
-for i = 1:T % The parfor code here is parfor i = 1:T
-    result_temp = main(j);
-    table(i,:) = result_temp(:);
-end
-repl = table;
+    T = 1000;
+    table = cell(T,3);
+    for i = 1:T % The parfor code here is parfor i = 1:T
+        result_temp = main(j);
+        table(i,:) = result_temp(:);
+    end
+    repl = table;
 end
 
 function stats = main(j)
 % Main function.Collect the final results.
-Data = initialization(j);
-Result_2SLS = twostage(Data);
-Result_1 = JackknifeDeleteOne(Data);
-temp1 = Result_1;
-resampling_jack_1 = [];
-for i = 1:999
-Data_resampling = bootstrapping(Data); % Check 4
-Result_Del_2SLS = twostage(Data_resampling);
-Result_Del_One_Resampling = JackknifeDeleteOne(Data_resampling);
-resampling_jack_1 = [resampling_jack_1;Result_Del_One_Resampling];
-end
-coverage_one = Coverage(resampling_jack_1);
+    Data = initialization(j);
+    Result_2SLS = twostage(Data);
+    Result_1 = JackknifeDeleteOne(Data);
+    temp1 = Result_1;
+    resampling_jack_1 = [];
+    for i = 1:999
+    Data_resampling = bootstrapping(Data); % Check 4
+    Result_Del_2SLS = twostage(Data_resampling);
+    Result_Del_One_Resampling = JackknifeDeleteOne(Data_resampling);
+    resampling_jack_1 = [resampling_jack_1;Result_Del_One_Resampling];
+    end
+    coverage_one = Coverage(resampling_jack_1);
 
-stats = [{Result_2SLS},{Result_1},{coverage_one}];
+    stats = [{Result_2SLS},{Result_1},{coverage_one}];
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 2SLS
@@ -79,11 +79,11 @@ end
 % Bootstrapping 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function result = bootstrapping(Data)
-%replacement
-size_Data = size(Data);
-n=size_Data(1);
-idx= ceil(n*rand(n,1)); %generate n random index between 1 and n
-result = Data(idx,:);
+    %replacement
+    size_Data = size(Data);
+    n=size_Data(1);
+    idx= ceil(n*rand(n,1)); %generate n random index between 1 and n
+    result = Data(idx,:);
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Coverage
@@ -101,23 +101,23 @@ end
 % Initialization function
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function result = initialization(j)
-% Parameter : mu2 = [0, 0.25, 1 : 15, 30, 1000]; 
-% mu2 indicates the strength of the instruments (Stock, Wright, & Yogo,
-% 2002).
-% beta = 0;
-% Error term~Normal(0, 1);
-templ=(1:15)';
-allmu2 = [0; 0.25; templ; 30; 1000];
-mu2=allmu2(j);
-R = mvnrnd([0;0], [1, 0.99; 0.99, 1], 500);
-Z = normrnd(0,1,500,3);
-PI = ones(3, 1); 
-a = sqrt((mu2)/(PI'*Z'*Z*PI));
-PI=PI*a;
-u=R(:, 1);
-v=R(:, 2);
-x=Z*PI+v;
-beta = 0;
-y=beta + u;
-result = [y,x,Z];
+    % Parameter : mu2 = [0, 0.25, 1 : 15, 30, 1000]; 
+    % mu2 indicates the strength of the instruments (Stock, Wright, & Yogo,
+    % 2002).
+    % beta = 0;
+    % Error term~Normal(0, 1);
+    templ=(1:15)';
+    allmu2 = [0; 0.25; templ; 30; 1000];
+    mu2=allmu2(j);
+    R = mvnrnd([0;0], [1, 0.99; 0.99, 1], 500);
+    Z = normrnd(0,1,500,3);
+    PI = ones(3, 1); 
+    a = sqrt((mu2)/(PI'*Z'*Z*PI));
+    PI=PI*a;
+    u=R(:, 1);
+    v=R(:, 2);
+    x=Z*PI+v;
+    beta = 0;
+    y=beta + u;
+    result = [y,x,Z];
 end
