@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % This file is to replicate paper "The Jackknife-a review"
-% Author: Guangyao Zhou
+% Author: Guangyao Zhou & Yutao Sun
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Replication results are stored in some Excel files. 
 function result = Jackknife_delete_one
@@ -8,7 +8,7 @@ function result = Jackknife_delete_one
        file_name = "Result_Jackknife_" + string(j);
        result = repetition(j);
        % "j" determines the value of mu2. In this study, mu2 have 19 values and
-       % denotes the 
+       % denotes the strength of the instruments.
        xlswrite(file_name,result,"Sheet1","A1");
     end
 end
@@ -36,10 +36,10 @@ function stats = main(j)
     temp1 = Result_1;
     resampling_jack_1 = [];
     for i = 1:999
-    Data_resampling = bootstrapping(Data); % Check 4
-    Result_Del_2SLS = twostage(Data_resampling);
-    Result_Del_One_Resampling = JackknifeDeleteOne(Data_resampling);
-    resampling_jack_1 = [resampling_jack_1;Result_Del_One_Resampling];
+        Data_resampling = bootstrapping(Data); % Check 4
+        Result_Del_2SLS = twostage(Data_resampling);
+        Result_Del_One_Resampling = JackknifeDeleteOne(Data_resampling);
+        resampling_jack_1 = [resampling_jack_1;Result_Del_One_Resampling];
     end
     coverage_one = Coverage(resampling_jack_1);
 
